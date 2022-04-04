@@ -9,7 +9,7 @@ class bills_nhap extends Model
 {
     protected $table = 'bills_nhap';
     use HasFactory;
-    public function ncc(){
+    public function nha_cung_cap(){
         return $this->belongsTo(nha_cung_cap::class,'id_ncc');
     }
 

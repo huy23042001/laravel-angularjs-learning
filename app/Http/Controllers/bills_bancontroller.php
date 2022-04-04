@@ -94,7 +94,7 @@ class bills_bancontroller extends Controller
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return $db;
+        return redirect()->to('/admin/billban');
     }
 
     /**
@@ -107,6 +107,7 @@ class bills_bancontroller extends Controller
     {
         $db = bills_ban::find($id);
         $db->delete();
-        return $db;
+        return redirect()->to('/admin/billban');
+        
     }
 }

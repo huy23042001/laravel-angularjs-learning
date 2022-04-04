@@ -6,6 +6,7 @@ use App\Http\Controllers\api\apiloaispcontroller;
 use App\Http\Controllers\api\apisanphamcontroller;
 use App\Http\Controllers\api\apinewscontroller;
 use App\Http\Controllers\api\billbanapi;
+use App\Http\Controllers\api\billbandetailapi;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -25,3 +26,4 @@ Route::resource('products',apisanphamcontroller::class);
 Route::resource('loaisp',apiloaispcontroller::class);
 Route::resource('news',apinewscontroller::class);
 Route::resource('billban', billbanapi::class);
+Route::resource('billbandetail', billbandetailapi::class);

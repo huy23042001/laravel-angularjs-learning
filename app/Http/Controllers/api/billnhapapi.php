@@ -4,6 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\bills_nhap;
+use App\Models\nhanvien;
+use App\Models\nha_cung_cap;
 
 class billnhapapi extends Controller
 {
@@ -14,7 +17,8 @@ class billnhapapi extends Controller
      */
     public function index()
     {
-        //
+        $brand = bills_nhap::with('nhanvien', 'nha_cung_cap')->get();
+        return $brand;
     }
 
     /**
@@ -24,7 +28,7 @@ class billnhapapi extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**

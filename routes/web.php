@@ -158,3 +158,7 @@ Route::get('/adminangular/news',function(){
 Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
+
+Route::get('/adminangular/billbandetail',function(){
+    return view('adminangular.billbandetail');
+});

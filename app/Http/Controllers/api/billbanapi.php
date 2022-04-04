@@ -39,8 +39,8 @@ class billbanapi extends Controller
     public function store(Request $request)
     {
         $db = new bills_ban;
-        $db->id_kh=$request->kh;
-        $time = strtotime($request->date);
+        $db->id_kh=$request->id_kh;
+        $time = strtotime($request->date_order);
         $newformat = date('Y-m-d',$time);
         $db->date_order = $newformat;
         $db->tong_tien = 0;
@@ -48,7 +48,7 @@ class billbanapi extends Controller
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return db;
+        return $db;
     }
 
     /**
@@ -82,7 +82,15 @@ class billbanapi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $db = bills_ban::find($id);
+        $db->id_kh=$request->id_kh;
+        $time = strtotime($request->date_order);
+        $newformat = date('Y-m-d',$time);
+        $db->date_order = $newformat;
+        $db->status = $request->status;
+        $db->note = $request->note;
+        $db->save();
+        return $db;
     }
 
     /**
@@ -93,6 +101,8 @@ class billbanapi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $db = bills_ban::find($id);
+        $db->delete();
+        return $db;
     }
 }

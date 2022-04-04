@@ -6,25 +6,19 @@
         <thead>
             <tr>
             <th>TT</th>
-            <th>khach hang</th>
-            <th>Ngay ban</th>
-            <th>Tong tien</th>
-            <th>Phuong thuc </th>
-            <th>tinh trang</th>
-            <th>ghi chu</th>
+            <th>Ma don hang</th>
+            <th>San pham</th>
+            <th>So luong</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="l in bills track by $index">
+            <tr ng-repeat="l in billdetails track by $index">
                 <td>@{{$index+1}}</td>
-                <td>@{{l.khach_hang.ten_kh}}</td>
-                <td>@{{l.date_order}}</td>
-                <td>@{{l.tong_tien}}</td>
-                <td>@{{l.payment}}</td>
-                <td>@{{l.status}}</td>
-                <td>@{{l.note}}</td>
+                <td>@{{l.id_bill_ban}}</td>
+                <td>@{{l.sanpham.name}}</td>
+                <td>@{{l.sl}}</td>
                 <td><button class="btn btn-info" ng-click="openModal(l.id, $index)">update</button></td>
                 <td><button class="btn btn-danger" ng-click="openConfirm(l.id, $index)">delete</button></td>
             </tr>
@@ -43,29 +37,24 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="form-group">
-                        <label for="name">Khach hang:</label>
+                        <label for="name">Ma don hang:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.id_kh">
+                            <input type="text" class="form-control" ng-model="bill.id_bill_ban">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Ngay ban:</label>
+                        <label for="name">San pham:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.date_order">
+                            <input type="text" class="form-control" ng-model="bill.id_sp">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Tinh trang:</label>
+                        <label for="name">So luong:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.status">
+                            <input type="text" class="form-control" ng-model="bill.sl">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="name">Ghi chu:</label>
-                        <div>
-                            <input type="text" class="form-control" ng-model="bill.note">
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
             <div class="modal-footer">
@@ -104,25 +93,14 @@
 <script>
     app.controller('bill', ($scope, $http)=>{
         $http({
-            url: 'http://127.0.0.1:8000/api/billban',
+            url: 'http://127.0.0.1:8000/api/billbandetail',
             method: 'GET'
         }).then((res)=>{
-            $scope.bills = res.data;
+            $scope.billdetails = res.data;
             console.log(res.data);
         }, (err)=>{
 
         });
-        $scope.reloaddata=function(){
-            $http({
-                url: 'http://127.0.0.1:8000/api/billban',
-                method: 'GET'
-            }).then((res)=>{
-                $scope.bills = res.data;
-                console.log(res.data);
-            }, (err)=>{
-
-            });
-        }
 
         $scope.openModal = (id, index)=>{
             console.log(id);
@@ -131,8 +109,8 @@
                 $scope.selected = id;
                 $scope.index = index;
                 $scope.state = "update";
-                $scope.bill = $scope.bills[index];
-                $scope.bill.id_kh = $scope.bills[index].id_kh;
+                $scope.bill = $scope.billdetails[index];
+                $scope.bill.id_kh = $scope.billdetails[index].id_kh;
             } else {
                 $scope.title = "tạo";
                 $scope.state = "create"
@@ -144,26 +122,26 @@
             if($scope.state == "create"){
                 $http({
                     method: 'POST',
-                    url: 'http://127.0.0.1:8000/api/billban',
+                    url: 'http://127.0.0.1:8000/api/billbandetail',
                     'content-type': 'application/json',
                     data: $scope.bill
                 }).then((res)=>{
-                    $scope.bills.push(res.data);
+                    $scope.billdetails.push(res.data);
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
-
+                    console.log(err);
                 });
             } else{
                 $http({
                     method: 'PUT',
-                    url: 'http://127.0.0.1:8000/api/billban/'+$scope.selected,
+                    url: 'http://127.0.0.1:8000/api/billbandetail/'+$scope.selected,
                     'content-type': 'application/json',
                     data: $scope.bill
                 }).then((res)=>{
-                    $scope.bills[$scope.index] = res.data;
+                    $scope.billdetails[$scope.index] = res.data;
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
-
+                    console.log(err);
                 });
             }
         }
@@ -177,9 +155,9 @@
         $scope.delete = ()=>{
             $http({
                 method: 'DELETE',
-                url: 'http://127.0.0.1:8000/api/billban/'+$scope.selected,
+                url: 'http://127.0.0.1:8000/api/billbandetail/'+$scope.selected,
             }).then((res)=>{
-                $scope.bills.splice($scope.index, 1);
+                $scope.billdetails.splice($scope.index, 1);
                 $("#deletemodal").modal('hide');
             }, (err)=>{
 

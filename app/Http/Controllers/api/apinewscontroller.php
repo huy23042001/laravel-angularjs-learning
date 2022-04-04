@@ -40,7 +40,7 @@ class apinewscontroller extends Controller
         $db = new news();
         $db->title = $request->title;
         $db->content = $request->content;
-        $db->image = $request->image;
+        $db->image = "";
         $db->created_at = new Datetime();
         $db->save();
         return $db;
@@ -80,7 +80,7 @@ class apinewscontroller extends Controller
         $db = news::find($id);
         $db->title = $request->title;
         $db->content = $request->content;
-        $db->image = $request->image;
+        $db->image = "";
         $db->updated_at = new Datetime();
         $db->save();
         return $db;

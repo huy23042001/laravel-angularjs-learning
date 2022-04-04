@@ -104,13 +104,8 @@
 <script>
     app.controller('bill', ($scope, $http)=>{
         $http({
-<<<<<<< HEAD
-            url: 'http://127.0.0.1:8000/api/billban',
-            method: 'GET'
-=======
             method: "GET",
             url: 'http://127.0.0.1:8000/api/billban'
->>>>>>> 93f82929768f6939c929a1c9a6c305b94e35eda7
         }).then((res)=>{
             $scope.bills = res.data;
             console.log(res.data);

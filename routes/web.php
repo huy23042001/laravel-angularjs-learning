@@ -158,3 +158,7 @@ Route::get('/adminangular/news',function(){
 Route::get('/',function(){
     return view('index');
 });
+
+Route::get('/adminangular/products',function(){
+    return view('adminangular.products');
+});

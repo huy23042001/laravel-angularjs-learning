@@ -71,3 +71,9 @@
 </main>
 
 @stop
+
+
+
+@section('js')
+
+@stop

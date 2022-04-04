@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 Route::resource('products',apisanphamcontroller::class);
 Route::resource('loaisp',apiloaispcontroller::class);
 Route::resource('news',apinewscontroller::class);

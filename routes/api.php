@@ -13,11 +13,8 @@ use App\Http\Controllers\api\billbandetailapi;
 use App\Http\Controllers\api\apiuserscontroller;
 use App\Http\Controllers\api\apislidecontroller;
 use App\Http\Controllers\api\apiquangcaocontroller;
-<<<<<<< HEAD
 use App\Http\Controllers\api\billnhapapi;
 use App\Http\Controllers\api\billnhapdetailapi;
-=======
->>>>>>> 7b1922f1242fb9d6f79d895711ce23f6d97a5233
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -45,8 +42,5 @@ Route::resource('phanhoi', apiphanhoicontroller::class);
 Route::resource('users', apiuserscontroller::class);
 Route::resource('slide', apislidecontroller::class);
 Route::resource('quangcao', apiquangcaocontroller::class);
-<<<<<<< HEAD
 Route::resource('billnhap', billnhapapi::class);
 Route::resource('billnhapdetail', billnhapdetailapi::class);
-=======
->>>>>>> 7b1922f1242fb9d6f79d895711ce23f6d97a5233

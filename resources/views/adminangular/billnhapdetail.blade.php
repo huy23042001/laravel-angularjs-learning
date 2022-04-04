@@ -6,25 +6,22 @@
         <thead>
             <tr>
             <th>TT</th>
-            <th>khach hang</th>
-            <th>Ngay ban</th>
-            <th>Tong tien</th>
-            <th>Phuong thuc </th>
-            <th>tinh trang</th>
-            <th>ghi chu</th>
+            <th>Ma don hang</th>
+            <th>San pham</th>
+            <th>So luong</th>
+            <th>Don vi</th>
             <th>Edit</th>
             <th>Delete</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="l in bills track by $index">
+            <tr ng-repeat="l in billdetails track by $index">
                 <td>@{{$index+1}}</td>
-                <td>@{{l.khach_hang.ten_kh}}</td>
-                <td>@{{l.date_order}}</td>
-                <td>@{{l.tong_tien}}</td>
-                <td>@{{l.payment}}</td>
-                <td>@{{l.status}}</td>
-                <td>@{{l.note}}</td>
+                <td>@{{l.id_bill_nhap}}</td>
+                <td>@{{l.sanpham.name}}</td>
+                <td>@{{l.sl}}</td>
+                <td>@{{l.don_vi}}</td>
+                
                 <td><button class="btn btn-info" ng-click="openModal(l.id, $index)">update</button></td>
                 <td><button class="btn btn-danger" ng-click="openConfirm(l.id, $index)">delete</button></td>
             </tr>
@@ -43,29 +40,30 @@
             <div class="modal-body">
                 <div class="container-fluid">
                     <div class="form-group">
-                        <label for="name">Khach hang:</label>
+                        <label for="ncc">Ma HD nhap:</label>
                         <div>
-                            <select  id="name" ng-model="bill.id_kh">
-                                <option ng-repeat = "c in customers" value="@{{c.id}}">@{{c.ten_kh}}</option>
+                            <input type="text" class="form-control" ng-model="bill.id_bill_nhap">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vn">san pham:</label>
+                        <div>
+                            <select name="" id="nv"  ng-model="bill.id_sp">
+                                <option ng-repeat = "s in products" value="@{{s.id}}" >@{{s.name}}</option>
                             </select>
+        
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Ngay ban:</label>
+                        <label for="name">so luong:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.date_order">
+                            <input type="text" class="form-control" ng-model="bill.sl">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Tinh trang:</label>
+                        <label for="name">don vi:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.status">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Ghi chu:</label>
-                        <div>
-                            <input type="text" class="form-control" ng-model="bill.note">
+                            <input type="text" class="form-control" ng-model="bill.don_vi">
                         </div>
                     </div>
                 </div>
@@ -105,46 +103,40 @@
 @section('js')
 <script>
     app.controller('bill', ($scope, $http)=>{
+        
         $http({
             method: "GET",
-            url: 'http://127.0.0.1:8000/api/billban'
+            url: 'http://127.0.0.1:8000/api/products'
         }).then((res)=>{
-            $scope.bills = res.data;
+            $scope.products = res.data.sanphams;
+            console.log(res.data.sanphams);
+        }, (err)=>{
+
+        });
+
+       
+
+        $http({
+            method: "GET",
+            url: 'http://127.0.0.1:8000/api/billnhapdetail'
+        }).then((res)=>{
+            $scope.billdetails = res.data;
             console.log(res.data);
         }, (err)=>{
 
         });
 
-        $http({
-            method: "GET",
-            url: 'http://127.0.0.1:8000/api/customers'
-        }).then((res)=>{
-            $scope.customers = res.data;
-            console.log(res.data);
-        }, (err)=>{
-
-        });
-        $scope.reloaddata=function(){
-            $http({
-                url: 'http://127.0.0.1:8000/api/billban',
-                method: 'GET'
-            }).then((res)=>{
-                $scope.bills = res.data;
-                console.log(res.data);
-            }, (err)=>{
-
-            });
-        }
-
+        
         $scope.openModal = (id, index)=>{
             console.log(id);
             if(id>=0){
+                
                 $scope.title = "cập nhật";
                 $scope.selected = id;
                 $scope.index = index;
                 $scope.state = "update";
-                $scope.bill = $scope.bills[index];
-                $scope.bill.id_kh+="";
+                $scope.bill = $scope.billdetails[index];
+                $scope.bill.id_sp+="";
             } else {
                 $scope.title = "tạo";
                 $scope.state = "create"
@@ -156,28 +148,37 @@
             if($scope.state == "create"){
                 $http({
                     method: 'POST',
-                    url: 'http://127.0.0.1:8000/api/billban',
+                    url: 'http://127.0.0.1:8000/api/billnhapdetail',
                     'content-type': 'application/json',
                     data: $scope.bill
                 }).then((res)=>{
-                    $scope.bills.push(res.data);
+        
+                    $scope.billdetails.push(res.data);
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
-
+                    console.log(err);
                 });
             } else{
                 $http({
                     method: 'PUT',
-                    url: 'http://127.0.0.1:8000/api/billban/'+$scope.selected,
+                    url: 'http://127.0.0.1:8000/api/billnhapdetail/'+$scope.selected,
                     'content-type': 'application/json',
                     data: $scope.bill
                 }).then((res)=>{
-                    $scope.bills[$scope.index] = res.data;
+                    $scope.billdetails[$scope.index] = res.data;
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
-
+                    console.log(err);
                 });
             }
+        }
+
+        $scope.chooseSupp =(id)=>{
+            console.log(id);
+        }
+
+        $scope.chooseStaff =(id)=>{
+            console.log(id);
         }
 
         $scope.openConfirm =(id, index)=>{
@@ -189,9 +190,9 @@
         $scope.delete = ()=>{
             $http({
                 method: 'DELETE',
-                url: 'http://127.0.0.1:8000/api/billban/'+$scope.selected,
+                url: 'http://127.0.0.1:8000/api/billnhapdetail/'+$scope.selected,
             }).then((res)=>{
-                $scope.bills.splice($scope.index, 1);
+                $scope.billdetails.splice($scope.index, 1);
                 $("#deletemodal").modal('hide');
             }, (err)=>{
 

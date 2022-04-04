@@ -48,7 +48,7 @@ class billbanapi extends Controller
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return $db;
+        return $db->with('khach_hang')->get()->orderByDesc('id')->first();
     }
 
     /**
@@ -90,7 +90,7 @@ class billbanapi extends Controller
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return $db;
+        return $db->with('khach_hang')->get()->find($id);
     }
 
     /**

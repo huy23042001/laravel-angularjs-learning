@@ -45,7 +45,9 @@
                     <div class="form-group">
                         <label for="name">San pham:</label>
                         <div>
-                            <input type="text" class="form-control" ng-model="bill.id_sp">
+                            <select  id="name" ng-model = "bill.id_sp">
+                                <option ng-repeat = "p in products" value="@{{p.id}}">@{{p.name}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -102,6 +104,16 @@
 
         });
 
+        $http({
+            url: 'http://127.0.0.1:8000/api/products',
+            method: 'GET'
+        }).then((res)=>{
+            $scope.products = res.data.sanphams;
+            console.log(res.data);
+        }, (err)=>{
+
+        });
+
         $scope.openModal = (id, index)=>{
             console.log(id);
             if(id>=0){
@@ -110,7 +122,7 @@
                 $scope.index = index;
                 $scope.state = "update";
                 $scope.bill = $scope.billdetails[index];
-                $scope.bill.id_kh = $scope.billdetails[index].id_kh;
+                $scope.bill.id_sp+="";
             } else {
                 $scope.title = "tạo";
                 $scope.state = "create"
@@ -139,6 +151,7 @@
                     data: $scope.bill
                 }).then((res)=>{
                     $scope.billdetails[$scope.index] = res.data;
+                    console.log(res.data);
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
                     console.log(err);

@@ -84,7 +84,7 @@ class billbandetailapi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $detail = bill_detail_ban::find($request->id);
+        $detail = bill_detail_ban::find($id);
         $bill = bills_ban::find($detail->id_bill_ban);
         $sanpham = sanpham::find($detail->id_sp);
         
@@ -111,7 +111,7 @@ class billbandetailapi extends Controller
         $sanpham->save();
         $detail->sl = $request->sl;
         $detail->save();
-        return $detail;
+        return $detail->with('sanpham')->get()->find($id);
     }
 
     /**
@@ -130,6 +130,6 @@ class billbandetailapi extends Controller
         $bill->save();
         $sanpham->save();
         $db->delete();
-        return $db;
+        return $db->with('sanpham')->get()->find($id);
     }
 }

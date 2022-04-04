@@ -28,7 +28,7 @@ class billnhapapi extends Controller
      */
     public function create()
     {
-        
+        return nhanvien::all();
     }
 
     /**
@@ -39,7 +39,17 @@ class billnhapapi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $db = new bills_nhap;
+        $db->id_ncc=$request->id_ncc;
+        $db->id_nhanvien = $request->id_nhanvien;
+        $time = strtotime($request->date_order);
+        $newformat = date('Y-m-d',$time);
+        $db->date_order = $newformat;
+        $db->tong_tien = 0;
+        $db->thanh_toan = 'on';
+        $db->note = $request->note;
+        $db->save();
+        return $db->with('nha_cung_cap', 'nhanvien')->get()->sortByDesc('id')->first();
     }
 
     /**
@@ -73,7 +83,15 @@ class billnhapapi extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $db = bills_nhap::find($id);
+        $db->id_ncc=$request->id_ncc;
+        $db->id_nhanvien = $request->id_nhanvien;
+        $time = strtotime($request->date_order);
+        $newformat = date('Y-m-d',$time);
+        $db->date_order = $newformat;
+        $db->note = $request->note;
+        $db->save();
+        return $db->with('nha_cung_cap', 'nhanvien')->get()->find($id);
     }
 
     /**
@@ -84,6 +102,10 @@ class billnhapapi extends Controller
      */
     public function destroy($id)
     {
-        //
+        $db = bills_nhap::find($id);
+        $db->delete();
+        return $db;
     }
+
+   
 }

@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\api\apisuppliercontroller;
+use App\Http\Controllers\api\apicustomercontroller;
 use App\Http\Controllers\api\apiloaispcontroller;
 use App\Http\Controllers\api\apisanphamcontroller;
 use App\Http\Controllers\api\apinewscontroller;
@@ -23,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::resource('products',apisanphamcontroller::class);
+Route::resource('suppliers',apisuppliercontroller::class);
+Route::resource('customers',apicustomercontroller::class);
 Route::resource('loaisp',apiloaispcontroller::class);
 Route::resource('news',apinewscontroller::class);
 Route::resource('billban', billbanapi::class);

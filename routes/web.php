@@ -168,7 +168,15 @@ Route::get('/adminangular/users',function(){
 Route::get('/adminangular/slide',function(){
     return view('adminangular.slide');
 });
+
 Route::get('/adminangular/quangcao',function(){
     return view('adminangular.quangcao');
 });
 
+Route::get('/adminangular/suppliers',function(){
+    return view('adminangular.suppliers');
+});
+
+Route::get('/adminangular/customers',function(){
+    return view('adminangular.customers');
+});

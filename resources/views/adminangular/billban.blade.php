@@ -31,10 +31,10 @@
 @section('js')
 <script>
     app.controller('bill', ($scope, $http)=>{
-        $http(
-            
+        $http({
+            method: "GET",
             url: 'http://127.0.0.1:8000/api/billban'
-        ).then((res)=>{
+        }).then((res)=>{
             $scope.bills = res.data;
             console.log(res.data);
         }, (err)=>{

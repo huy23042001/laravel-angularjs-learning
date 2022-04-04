@@ -155,12 +155,6 @@ Route::get('/adminangular/news',function(){
     return view('adminangular.news');
 });
 
-<<<<<<< HEAD
 Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
-=======
-Route::get('/',function(){
-    return view('index');
-});
->>>>>>> 706ef133c6ea7a7e4e6b6257bafa811e6769d8bf

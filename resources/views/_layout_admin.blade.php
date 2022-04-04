@@ -26,5 +26,10 @@
         <script src="/assets/admin/js/scripts.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="/assets/admin/js/datatables-simple-demo.js"></script>
+        <script src="/JS/jquery-3.6.0.min.js"></script>
+        <script src="/JS/angular.min.js"></script>
+        <script>
+            var app = angular.module('app', []);
+        <script>
     </body>
 </html>

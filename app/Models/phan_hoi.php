@@ -14,7 +14,7 @@ class phan_hoi extends Model
     public function sanpham(){
         return $this->belongsTo(sanpham::class,'id_sp');
     }
-    public function user(){
+    public function users(){
         return $this->belongsTo(users::class,'id_tk');
     }
 }

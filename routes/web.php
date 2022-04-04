@@ -158,18 +158,17 @@ Route::get('/adminangular/news',function(){
 Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
-<<<<<<< HEAD
-=======
-Route::get('/',function(){
-    return view('index');
-});
-<<<<<<< HEAD
 
-Route::get('/adminangular/products',function(){
-    return view('adminangular.products');
+Route::get('/adminangular/phanhoi',function(){
+    return view('adminangular.phanhoi');
 });
-=======
->>>>>>> 706ef133c6ea7a7e4e6b6257bafa811e6769d8bf
->>>>>>> 66c81df174464423bdffb0fef04bd286f041402e
-=======
->>>>>>> b1b46cc75265df3262679af554e6256afb1ad318
+Route::get('/adminangular/users',function(){
+    return view('adminangular.users');
+});
+Route::get('/adminangular/slide',function(){
+    return view('adminangular.slide');
+});
+Route::get('/adminangular/quangcao',function(){
+    return view('adminangular.quangcao');
+});
+

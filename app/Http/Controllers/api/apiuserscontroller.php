@@ -4,17 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\users;
+use \DateTime;
 
 class apiuserscontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        //
+    {;
+        return users::all();
     }
 
     /**
@@ -35,7 +32,19 @@ class apiuserscontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $db = new users();
+        $db->users_name = $request->users_name;
+        $db->password = $request->password;
+        $db->full_name=$request->full_name;
+        $db->email=$request->email;
+        $db->phone=$request->phone;
+        $db->Delet=1;
+        $db->address=$request->address;
+        $db->image = "a.jpg";
+        $db->remember_token = "";
+        $db->created_at = new Datetime();
+        $db->save();
+        return $db;
     }
 
     /**
@@ -46,7 +55,7 @@ class apiuserscontroller extends Controller
      */
     public function show($id)
     {
-        //
+        return users::findOrFail($id);
     }
 
     /**
@@ -69,7 +78,19 @@ class apiuserscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $db = users::find($id);
+        $db->users_name = $request->users_name;
+        $db->password = $request->password;
+        $db->full_name=$request->full_name;
+        $db->email=$request->email;
+        $db->phone=$request->phone;
+        $db->Delet=1;
+        $db->address=$request->address;
+        $db->image = "a.jpg";
+        $db->remember_token = "";
+        $db->updated_at = new Datetime();
+        $db->save();
+        return $db;
     }
 
     /**
@@ -80,6 +101,8 @@ class apiuserscontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        users::findOrFail($id)->delete();
+        return "Deleted";
     }
+    
 }

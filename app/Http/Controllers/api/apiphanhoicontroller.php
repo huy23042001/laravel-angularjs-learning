@@ -6,7 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\phan_hoi;
 use App\Models\users;
-use App\Models\sanoham;
+use App\Models\sanpham;
+use \DateTime;
 
 class apiphanhoicontroller extends Controller
 {
@@ -17,7 +18,8 @@ class apiphanhoicontroller extends Controller
      */
     public function index()
     {
-        return news::all();
+        $phanhoi = phan_hoi::with('sanpham','users')->get();
+        return $phanhoi;
     }
 
     /**
@@ -38,10 +40,11 @@ class apiphanhoicontroller extends Controller
      */
     public function store(Request $request)
     {
-        $db = new news();
-        $db->title = $request->title;
-        $db->content = $request->content;
-        $db->image = "";
+        $db = new phan_hoi();
+        $db->id_tk = $request->id_tk;
+        $db->id_sp = $request->id_sp;
+        $db->level = $request->level;
+        $db->note = $request->note;
         $db->created_at = new Datetime();
         $db->save();
         return $db;
@@ -55,7 +58,7 @@ class apiphanhoicontroller extends Controller
      */
     public function show($id)
     {
-        return news::findOrFail($id);
+        return phan_hoi::findOrFail($id);
     }
 
     /**
@@ -78,10 +81,11 @@ class apiphanhoicontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $db = news::find($id);
-        $db->title = $request->title;
-        $db->content = $request->content;
-        $db->image = "";
+        $db = phan_hoi::find($id);
+        $db->id_tk = $request->id_tk;
+        $db->id_sp = $request->id_sp;
+        $db->level = $request->level;
+        $db->note = $request->note;
         $db->updated_at = new Datetime();
         $db->save();
         return $db;
@@ -95,7 +99,7 @@ class apiphanhoicontroller extends Controller
      */
     public function destroy($id)
     {
-        news::findOrFail($id)->delete();
+        phan_hoi::findOrFail($id)->delete();
         return "Deleted";
     }
 }

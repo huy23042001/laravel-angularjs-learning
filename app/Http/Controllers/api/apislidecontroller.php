@@ -4,17 +4,15 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\slide;
+use \DateTime;
+use Illuminate\Support\Facades\DB;
 
 class apislidecontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        //
+    {;
+        return slide::all();
     }
 
     /**
@@ -35,7 +33,10 @@ class apislidecontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::table('slide')->insert([
+            'link' => $request->link,
+            'image' => $request->image!=null?$request->image:""
+        ]);
     }
 
     /**
@@ -46,7 +47,7 @@ class apislidecontroller extends Controller
      */
     public function show($id)
     {
-        //
+        return slide::findOrFail($id);
     }
 
     /**
@@ -69,7 +70,9 @@ class apislidecontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('slide')
+              ->where('id_slide', $request->id_slide)
+              ->update(['link' => $request->link,'image' => $request->image!=null?$request->image:""]);
     }
 
     /**
@@ -80,6 +83,7 @@ class apislidecontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        slide::findOrFail($id)->delete();
+        return "Deleted";
     }
 }

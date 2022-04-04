@@ -10,6 +10,7 @@ app.controller('newscontroller', function($scope, $http) { //tao 1 controller
     $scope.showmodal = function(id) {;
         $scope.id = id;
         if (id == 0) {
+            $scope.news = null;
             $scope.modalTitle = "Add new news";
         } else {
             $scope.modalTitle = "Edit news";     

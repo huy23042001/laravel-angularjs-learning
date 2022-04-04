@@ -4,17 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\quang_cao;
+use \DateTime;
 
 class apiquangcaocontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        //
+    {;
+        return quang_cao::all();
     }
 
     /**
@@ -35,7 +32,13 @@ class apiquangcaocontroller extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $db = new quang_cao();
+        $db->tittle = $request->tittle;
+        $db->image = "image1.jpg";
+        $db->note=$request->note;
+        $db->created_at = new Datetime();
+        $db->save();
+        return $db;
     }
 
     /**
@@ -46,7 +49,7 @@ class apiquangcaocontroller extends Controller
      */
     public function show($id)
     {
-        //
+        return quang_cao::findOrFail($id);
     }
 
     /**
@@ -69,7 +72,13 @@ class apiquangcaocontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $db = quang_cao::find($id);
+        $db->tittle = $request->tittle;
+        $db->image = $request->image;
+        $db->note=$request->note;
+        $db->updated_at = new Datetime();
+        $db->save();
+        return $db;
     }
 
     /**
@@ -80,6 +89,7 @@ class apiquangcaocontroller extends Controller
      */
     public function destroy($id)
     {
-        //
+        quang_cao::findOrFail($id)->delete();
+        return "Deleted";
     }
 }

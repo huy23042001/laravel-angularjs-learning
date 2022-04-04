@@ -41,7 +41,7 @@
                     	@foreach($kho as $k)
                         <tr>
                             <td>{{$tt++}}</td>
-                            <td>{{$k->sanpham->name??""}}</td>
+                            <td>{{$k->sanpham->name}}</td>
                             <td>{{$k->sl}}</td>
                             <td><a href="/admin/kho/{{$k->id}}/show" class="btn btn-info">Edit</a></td>
                             <td><a onclick="return confirm('Ban co muon xoa that khong?');" href="/admin/kho/{{$k->id}}/destroy" class="btn btn-danger">Delete</a></td>

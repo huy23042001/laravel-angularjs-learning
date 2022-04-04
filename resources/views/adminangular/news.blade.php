@@ -20,7 +20,6 @@
                     <th>TT</th>
                     <th>Title</th>
                     <th>Content</th>
-                    <th>Image</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -30,9 +29,8 @@
                     <td>@{{$index+1}}</td>
                     <td>@{{n.title}}</td>
                     <td>@{{n.content}}</td>
-                    <td><img src="@{{n.image}}"></td>
-                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(n.id)">&nbsp;</button></td>
-                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(n.id)">&nbsp;</button></td>
+                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(n.id_new)">&nbsp;</button></td>
+                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(n.id_new)">&nbsp;</button></td>
                 </tr>
             </tbody>
         </table>
@@ -51,25 +49,17 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="title">Title:</label>
+                            <label>Title:</label>
                             <div>
-                                <input type="text" name="title" class="form-control" ng-model="news.title">
+                                <input type="text" class="form-control" ng-model="news.title">
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="content">Content:</label>
+                            <label>Content:</label>
                             <div>
-                                <input type="text" name="content" class="form-control" ng-model="news.content">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="form-group">
-                            <label for="image">Product name:</label>
-                            <div>
-                                <input type="file" name="image" class="form-control" ng-model="news.image">
+                                <input type="text"class="form-control" ng-model="news.content">
                             </div>
                         </div>
                     </div>

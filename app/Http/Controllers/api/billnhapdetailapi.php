@@ -4,10 +4,8 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\news;
-use \DateTime;
 
-class apinewscontroller extends Controller
+class billnhapdetailapi extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +14,7 @@ class apinewscontroller extends Controller
      */
     public function index()
     {
-        return news::all();
+        //
     }
 
     /**
@@ -37,13 +35,7 @@ class apinewscontroller extends Controller
      */
     public function store(Request $request)
     {
-        $db = new news();
-        $db->title = $request->title;
-        $db->content = $request->content;
-        $db->image = "";
-        $db->created_at = new Datetime();
-        $db->save();
-        return $db;
+        //
     }
 
     /**
@@ -54,7 +46,7 @@ class apinewscontroller extends Controller
      */
     public function show($id)
     {
-        return news::findOrFail($id);
+        //
     }
 
     /**
@@ -77,13 +69,7 @@ class apinewscontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $db = news::find($id);
-        $db->title = $request->title;
-        $db->content = $request->content;
-        $db->image = "";
-        $db->updated_at = new Datetime();
-        $db->save();
-        return $db;
+        //
     }
 
     /**
@@ -94,7 +80,6 @@ class apinewscontroller extends Controller
      */
     public function destroy($id)
     {
-        news::findOrFail($id)->delete();
-        return "Deleted";
+        //
     }
 }

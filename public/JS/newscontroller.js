@@ -7,12 +7,12 @@ app.controller('newscontroller', function($scope, $http) { //tao 1 controller
         console.log(response.data);
         $scope.listnews= response.data;
     });
-    $scope.showmodal = function(id) {
+    $scope.showmodal = function(id) {;
         $scope.id = id;
         if (id == 0) {
             $scope.modalTitle = "Add new news";
         } else {
-            $scope.modalTitle = "Edit news";
+            $scope.modalTitle = "Edit news";     
             $http({
                 method: "GET",
                 url: "http://localhost:8000/api/news/" + id

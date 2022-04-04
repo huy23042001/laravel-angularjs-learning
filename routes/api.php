@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\apiloaispcontroller;
 use App\Http\Controllers\api\apisanphamcontroller;
 use App\Http\Controllers\api\apinewscontroller;
+use App\Http\Controllers\api\billbanapi;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,3 +25,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('products',apisanphamcontroller::class);
 Route::resource('loaisp',apiloaispcontroller::class);
 Route::resource('news',apinewscontroller::class);
+Route::resource('billban', billbanapi::class);

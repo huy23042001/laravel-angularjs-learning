@@ -37,7 +37,7 @@ class bills_bancontroller extends Controller
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return redirect()->to('/admin/billban');
+        return $db;
     }
 
     /**
@@ -50,7 +50,6 @@ class bills_bancontroller extends Controller
     {
        
         $kh = khach_hang::all();
-       
         return view('admin.billban.add', ['kh'=>$kh]);
     }
 
@@ -85,17 +84,17 @@ class bills_bancontroller extends Controller
      * @param  \App\Models\Brand  $Brand
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $db = bills_ban::find($request->id);
-        $db->id_kh=$request->kh;
+        $db = bills_ban::find($id);
+        $db->id_kh=$request->kh_id;
         $time = strtotime($request->date);
         $newformat = date('Y-m-d',$time);
         $db->date_order = $newformat;
         $db->status = $request->status;
         $db->note = $request->note;
         $db->save();
-        return redirect()->to('/admin/billban');
+        return $db;
     }
 
     /**
@@ -108,7 +107,6 @@ class bills_bancontroller extends Controller
     {
         $db = bills_ban::find($id);
         $db->delete();
-        return redirect()->to('/admin/billban');
-        
+        return $db;
     }
 }

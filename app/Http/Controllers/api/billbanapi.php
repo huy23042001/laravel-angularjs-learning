@@ -38,7 +38,17 @@ class billbanapi extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $db = new bills_ban;
+        $db->id_kh=$request->kh;
+        $time = strtotime($request->date);
+        $newformat = date('Y-m-d',$time);
+        $db->date_order = $newformat;
+        $db->tong_tien = 0;
+        $db->payment = 'on';
+        $db->status = $request->status;
+        $db->note = $request->note;
+        $db->save();
+        return db;
     }
 
     /**

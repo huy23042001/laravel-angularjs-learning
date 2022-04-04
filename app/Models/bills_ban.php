@@ -9,7 +9,7 @@ class bills_ban extends Model
 {
     protected $table = 'bills_ban';
     use HasFactory;
-    public function kh(){
+    public function khach_hang(){
         return $this->belongsTo(khach_hang::class,'id_kh');
     }
 }

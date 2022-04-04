@@ -108,6 +108,5 @@ class bills_bancontroller extends Controller
         $db = bills_ban::find($id);
         $db->delete();
         return $db;
-        
     }
 }

@@ -153,3 +153,7 @@ Route::get('/adminangular/loaisp',function(){
 Route::get('/adminangular/news',function(){
     return view('adminangular.news');
 });
+
+Route::get('/adminangular/billban',function(){
+    return view('adminangular.billban');
+});

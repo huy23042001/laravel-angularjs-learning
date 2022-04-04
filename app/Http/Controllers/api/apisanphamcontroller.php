@@ -5,17 +5,14 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\sanpham;
+use App\Models\loaisp;
 use \Datetime;
 class apisanphamcontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return sanpham::all();
+        $sanphams = sanpham::with('loaisp')->get();
+        return ['sanphams'=>$sanphams];
     }
 
     /**

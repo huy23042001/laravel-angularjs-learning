@@ -7,6 +7,23 @@ app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
         console.log(response.data);
         $scope.phanhois= response.data;
     });
+
+    $http({
+        method: "GET",
+        url: "http://localhost:8000/api/products"
+    }).then(function(response) {
+       
+        $scope.products= response.data.sanphams;
+        console.log($scope.products);
+    });
+
+    $http({
+        method: "GET",
+        url: "http://localhost:8000/api/users"
+    }).then(function(response) {
+        console.log(response.data);
+        $scope.listusers= response.data;
+    });
     $scope.showmodal = function(id) {;
         $scope.id = id;
         if (id == 0) {
@@ -18,6 +35,8 @@ app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
                 url: "http://localhost:8000/api/phanhoi/" + id
             }).then(function(response) {
                 $scope.phanhoi = response.data;
+                $scope.phanhoi.id_sp +='';
+                $scope.phanhoi.id_tk +='';
             });
         }
         $('#modelId').modal('show');

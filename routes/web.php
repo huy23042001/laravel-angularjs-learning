@@ -147,6 +147,9 @@ Route::get('/',function(){
 Route::get('/admin/product',function(){
     return view('admin.sanpham');
 });
+Route::get('/adminangular/products',function(){
+    return view('adminangular.products');
+});
 
 Route::get('/adminangular/loaisp',function(){
     return view('adminangular.loaisp');

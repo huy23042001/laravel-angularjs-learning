@@ -7,6 +7,7 @@ app.controller('mycontroller',function($scope,$http){
         method: "GET",
         url: "http://localhost:8000/api/suppliers"
     }).then(function(response) {
+        console.log(response);
         $scope.suppliers = response.data;
     });
 
@@ -14,6 +15,7 @@ app.controller('mycontroller',function($scope,$http){
         method: "GET",
         url: "http://localhost:8000/api/loaisp"
     }).then(function(response) {
+        console.log(response);
         $scope.loaisps = response.data;
     });
 
@@ -21,6 +23,7 @@ app.controller('mycontroller',function($scope,$http){
         method: "GET",
         url: "http://localhost:8000/api/products"
     }).then(function(response) {
+        console.log(response);
         $scope.products = response.data;
     });
 
@@ -29,13 +32,7 @@ app.controller('mycontroller',function($scope,$http){
         $scope.id = id;
         if (id == 0) {
             $scope.modalTitle = "Add new product";
-            $scope.product.name = "";
-            $scope.product.mota_sp = "";
-            $scope.product.unit_price = "";
-            $scope.product.so_luong = "";
-            $scope.product.don_vi_tinh = "";
-            $scope.product.id_loai_sp = "";
-            $scope.product.id_ncc = "";
+            $scope.product = null;
         } else {
             $scope.modalTitle = "Edit product";
             $http({
@@ -43,6 +40,8 @@ app.controller('mycontroller',function($scope,$http){
                 url: "http://localhost:8000/api/products/" + id
             }).then(function(response) {
                 $scope.product = response.data[0];
+                $scope.product.id_loai_sp +='';
+                $scope.product.id_ncc +='';
                 console.log($scope.product)
             });
         }

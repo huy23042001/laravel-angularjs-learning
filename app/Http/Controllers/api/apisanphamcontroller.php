@@ -56,13 +56,13 @@ class apisanphamcontroller extends Controller
      */
     public function show($id)
     {
-        $sanphams = DB::table('san_pham')
-            ->join('loai_sp', 'san_pham.id_loai_sp', '=', 'loai_sp.id')// joining the contacts table , where user_id and contact_user_id are same
-            ->join('nha_cung_cap', 'san_pham.id_ncc', '=', 'nha_cung_cap.id')// joining the contacts table , where user_id and contact_user_id are same
-            ->where('san_pham.id',$id)
-            ->select('san_pham.*', 'loai_sp.id','nha_cung_cap.id')
-            ->get();
-        return $sanphams;
+        // $sanphams = DB::table('san_pham')
+        //     ->join('loai_sp', 'san_pham.id_loai_sp', '=', 'loai_sp.id')// joining the contacts table , where user_id and contact_user_id are same
+        //     ->join('nha_cung_cap', 'san_pham.id_ncc', '=', 'nha_cung_cap.id')// joining the contacts table , where user_id and contact_user_id are same
+        //     ->where('san_pham.id',$id)
+        //     ->select('san_pham.*', 'loai_sp.id','nha_cung_cap.id')
+        //     ->get();
+        return sanpham::all();
     }
 
     /**

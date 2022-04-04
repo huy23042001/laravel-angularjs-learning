@@ -155,10 +155,10 @@ Route::get('/adminangular/news',function(){
     return view('adminangular.news');
 });
 
-<<<<<<< HEAD
 Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
+<<<<<<< HEAD
 =======
 Route::get('/',function(){
     return view('index');
@@ -171,3 +171,5 @@ Route::get('/adminangular/products',function(){
 =======
 >>>>>>> 706ef133c6ea7a7e4e6b6257bafa811e6769d8bf
 >>>>>>> 66c81df174464423bdffb0fef04bd286f041402e
+=======
+>>>>>>> b1b46cc75265df3262679af554e6256afb1ad318

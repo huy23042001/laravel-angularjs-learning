@@ -30,6 +30,7 @@ use App\Http\Controllers\khach_hangcontroller;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/hello',function(){
     return "<h1>Hello world!</h1>";
 });
@@ -152,4 +153,8 @@ Route::get('/adminangular/loaisp',function(){
 });
 Route::get('/adminangular/news',function(){
     return view('adminangular.news');
+});
+
+Route::get('/',function(){
+    return view('index');
 });

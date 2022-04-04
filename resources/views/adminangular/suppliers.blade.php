@@ -1,30 +1,30 @@
 @extends('_layout_admin')
 @section('content')
 <main ng-controller="mycontroller">
-    <h1>PRODUCT MANAGEMENT FORM</h1>
+    <h1>SUPPLIER MANAGEMENT FORM</h1>
     <p><button class="btn btn-primary" ng-click="showmodal(0)"><i class="fa fa-plus"> Create</i></button></p>
     <div>
         <table class="table table-border">
             <thead>
                 <tr>
                     <th>TT</th>
-                    <th>Picture</th>
-                    <th>Name</th>
-                    <th>Unit Price</th>
-                    <th>Category Name</th>
+                    <th>Supplier Name</th>
+                    <th>Address</th>
+                    <th>Email</th>
+                    <th>Phone</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="sp in products.sanphams">
+                <tr ng-repeat="item in suppliers">
                     <td>@{{$index+1}}</td>
-                    <td><img src="/upload/sanpham/@{{sp.image}}" style='width:100px' alt=""></td>
-                    <td>@{{sp.name}}</td>
-                    <td align="right">@{{sp.unit_price |number:0}}</td>
-                    <td>@{{sp.loaisp.tenloai}}</td>
-                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(sp.id)">&nbsp;</button></td>
-                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(sp.id)">&nbsp;</button></td>
+                    <td>@{{item.ten_ncc}}</td>
+                    <td>@{{item.diachi_ncc}}</td>
+                    <td>@{{item.email}}</td>
+                    <td>@{{item.sdt}}</td>
+                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(item.id)">&nbsp;</button></td>
+                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(item.id)">&nbsp;</button></td>
                 </tr>
             </tbody>
         </table>
@@ -44,59 +44,40 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Product name:</label>
+                            <label for="name">Supplier name:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="product.name">
+                                <input type="text" class="form-control" ng-model="supplier.ten_ncc">
                             </div>
                         </div>
                     </div>
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="categoryName">Category name:<p>@{{product.id_loai_sp}}</p> </label>
-                            <select name="categoryName" id="categoryName" ng-model="product.id_loai_sp">
-                                <option ng-repeat="option in loaisps" value="@{{option.id}}">@{{option.tenloai}}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="container-fluid">
-                        <div class="form-group">
-                            <label for="supplier">Supplier name: <p>@{{product.id_ncc}}</p></label>
-                            <select name="supplier" id="supplier" ng-model="product.id_ncc">
-                            <option ng-repeat="option in suppliers" value="@{{option.id}}">@{{option.ten_ncc}}</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="container-fluid">
-                        <div class="form-group">
-                            <label for="name">Quantity:</label>
+                            <label for="name">Address:</label>
                             <div>
-                                <textarea class="form-control" rows="5" ng-model="product.mota_sp"></textarea>
+                                <input type="text" class="form-control" ng-model="supplier.diachi_ncc">
                             </div>
                         </div>
                     </div>
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Quantity:</label>
+                            <label for="name">Email:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="product.so_luong">
+                                <input type="text" class="form-control" ng-model="supplier.email">
                             </div>
                         </div>
                     </div>
-
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Unit:</label>
+                            <label for="name">Phone:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="product.don_vi_tinh">
-                            </div>
+                                <input type="text" class="form-control" ng-model="supplier.sdt">
                             </div>
                         </div>
                     </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" ng-click="saveData()">Save</button>
@@ -111,7 +92,7 @@
 @section('js')
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
-    <script src="/JS/product.js"></script>
+    <script src="/JS/supplier.js"></script>
 @stop
 
 

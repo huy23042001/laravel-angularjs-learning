@@ -1,4 +1,4 @@
-var app = angular.module('myapp', []); //tao 1 module
+
 app.controller('sanphamcontroller', function($scope, $http) { //tao 1 controller
     $http({
         method: "GET",

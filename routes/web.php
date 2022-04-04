@@ -159,6 +159,30 @@ Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
 
+<<<<<<< HEAD
 Route::get('/adminangular/billbandetail',function(){
     return view('adminangular.billbandetail');
 });
+=======
+Route::get('/adminangular/phanhoi',function(){
+    return view('adminangular.phanhoi');
+});
+Route::get('/adminangular/users',function(){
+    return view('adminangular.users');
+});
+Route::get('/adminangular/slide',function(){
+    return view('adminangular.slide');
+});
+
+Route::get('/adminangular/quangcao',function(){
+    return view('adminangular.quangcao');
+});
+
+Route::get('/adminangular/suppliers',function(){
+    return view('adminangular.suppliers');
+});
+
+Route::get('/adminangular/customers',function(){
+    return view('adminangular.customers');
+});
+>>>>>>> 93f82929768f6939c929a1c9a6c305b94e35eda7

@@ -1,34 +1,40 @@
+app.controller('mycontroller',function($scope,$http){
+  
 
-app.controller('loaispcontroller', function($scope, $http) { //tao 1 controller
+    $scope.customer=[];
     $http({
         method: "GET",
-        url: "http://localhost:8000/api/loaisp"
+        url: "http://localhost:8000/api/customers"
     }).then(function(response) {
-        console.log(response.data);
-        $scope.loaisps= response.data;
+        $scope.customers = response.data;
+        console.log($scope.customers)
     });
+
     $scope.showmodal = function(id) {
         $scope.id = id;
         if (id == 0) {
-            $scope.loaisp = null;
-            $scope.modalTitle = "Add new category product";
+            $scope.modalTitle = "Add new customer";
+            $scope.customer.tenloai = "";
         } else {
-            $scope.modalTitle = "Edit category product";
+            $scope.modalTitle = "Edit customer";
             $http({
                 method: "GET",
-                url: "http://localhost:8000/api/loaisp/" + id
+                url: "http://localhost:8000/api/customers/" + id
             }).then(function(response) {
-                $scope.loaisp = response.data;
+                $scope.customer = response.data;
+                console.log($scope.customer)
             });
         }
         $('#modelId').modal('show');
     }
+
+
     $scope.deleteClick = function(id) {
         var hoi = confirm("Ban co muon xoa that khong");
         if (hoi) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8000/api/loaisp/" + id
+                url: "http://localhost:8000/api/customers/" + id
             }).then(function(response) {
                 $scope.message = response.data;
                 location.reload();
@@ -36,23 +42,24 @@ app.controller('loaispcontroller', function($scope, $http) { //tao 1 controller
         }
     }
     $scope.saveData = function() {
-        if ($scope.id == 0) { //dang them moi sp
+        console.log($scope.customer);
+        if ($scope.id == 0) { //dang them moi
             $http({
                 method: "POST",
-                url: "http://localhost:8000/api/loaisp",
-                data: $scope.loaisp,
+                url: "http://localhost:8000/api/customers",
+                data: $scope.customer,
                 "content-Type": "application/json"
             }).then(function(response) {
                 $scope.message = response.data;
                 console.log(response.data);
-                location.reload();
+                // location.reload();
 
             });
-        } else { //sua san pham
+        } else { //sua
             $http({
                 method: "PUT",
-                url: "http://localhost:8000/api/loaisp/" + $scope.id,
-                data: $scope.loaisp,
+                url: "http://localhost:8000/api/customers/" + $scope.id,
+                data: $scope.customer,
                 "content-Type": "application/json"
             }).then(function(response) {
                 $scope.message = response.data;
@@ -62,4 +69,4 @@ app.controller('loaispcontroller', function($scope, $http) { //tao 1 controller
             });
         }
     }
-});
+})

@@ -1,25 +1,26 @@
 @extends('_layout_admin')
 @section('content')
-
-<div ng-controller="loaispcontroller">
-    <h1>PRODUCT Category MANAGEMENT FORM</h1>
+<div ng-controller="newscontroller">
+    <h1>NEW MANAGEMENT FORM</h1>
     <p><button class="btn btn-primary" ng-click="showmodal(0)"><i class="fa fa-plus"> Create</i></button></p>
     <div>
         <table class="table table-border">
             <thead>
                 <tr>
                     <th>TT</th>
-                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Link</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="l in loaisps">
+                <tr ng-repeat="s in slides">
                     <td>@{{$index+1}}</td>
-                    <td>@{{l.tenloai}}</td>
-                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(l.id)">&nbsp;</button></td>
-                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(l.id)">&nbsp;</button></td>
+                    <td><img src="/uploade/sanpham/@{{s.image}}"></td>
+                    <td>@{{s.link}}</td>
+                    <td><button class="btn btn-info fa fa-pencil" ng-click="showmodal(s.id_slide)">&nbsp;</button></td>
+                    <td><button class="btn btn-danger fa fa-trash" ng-click="deleteClick(s.id_slide)">&nbsp;</button></td>
                 </tr>
             </tbody>
         </table>
@@ -38,23 +39,30 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Category Product name:</label>
+                            <label>Image:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="loaisp.tenloai">
+                                <input type="file" class="form-control" ng-model="slide.image">
                             </div>
                         </div>
                     </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" ng-click="saveData()">Save</button>
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label>Link:</label>
+                            <div>
+                                <input type="text"class="form-control" ng-model="slide.link">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="saveData()">Save</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
 @stop
-
 @section('js')
-    <script src="/JS/productcategorycontroller.js"></script>
+    <script src="/JS/slidecontroller.js"></script>
 @stop

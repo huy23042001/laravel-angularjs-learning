@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
     <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -31,6 +31,6 @@
         <script>
             var app = angular.module('app', []);
         </script>
-         @yield('js')
+        @yield('js')
     </body>
 </html>

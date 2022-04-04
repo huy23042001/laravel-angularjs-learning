@@ -34,7 +34,7 @@
                 	@foreach($phanhoi as $p)
                     <tr>
                         <td>{{$tt++}}</td>
-                        <td>{{$p->user->users_name}}</td>
+                        <td>{{$p->users->users_name}}</td>
                         <td>{{$p->sanpham->name}}</td>
                         <td>{{$p->level}}</td>
                         <td>{{$p->note}}</td>

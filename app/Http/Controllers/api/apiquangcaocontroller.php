@@ -4,17 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\sanpham;
-use App\Models\loaisp;
-use \Datetime;
-use Illuminate\Support\Facades\DB;
+use App\Models\quang_cao;
+use \DateTime;
 
-class apisanphamcontroller extends Controller
+class apiquangcaocontroller extends Controller
 {
     public function index()
-    {
-        $sanphams = sanpham::with('loaisp')->get();
-        return ['sanphams'=>$sanphams];
+    {;
+        return quang_cao::all();
     }
 
     /**
@@ -35,14 +32,10 @@ class apisanphamcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $db = new sanpham();
-        $db->name = $request->name;
-        $db->mota_sp = $request->name;
-        $db->id_ncc=$request->id_ncc;
-        $db->Delet=1;
-        $db->so_luong=$request->so_luong;
-        $db->id_loai_sp = $request->id_loai_sp;
-        $db->unit_price = $request->unit_price;
+        $db = new quang_cao();
+        $db->tittle = $request->tittle;
+        $db->image = "image1.jpg";
+        $db->note=$request->note;
         $db->created_at = new Datetime();
         $db->save();
         return $db;
@@ -56,13 +49,7 @@ class apisanphamcontroller extends Controller
      */
     public function show($id)
     {
-        $sanphams = DB::table('san_pham')
-            ->join('loai_sp', 'san_pham.id_loai_sp', '=', 'loai_sp.id')// joining the contacts table , where user_id and contact_user_id are same
-            ->join('nha_cung_cap', 'san_pham.id_ncc', '=', 'nha_cung_cap.id')// joining the contacts table , where user_id and contact_user_id are same
-            ->where('san_pham.id',$id)
-            ->select('san_pham.*', 'loai_sp.id','nha_cung_cap.id')
-            ->get();
-        return $sanphams;
+        return quang_cao::findOrFail($id);
     }
 
     /**
@@ -85,15 +72,11 @@ class apisanphamcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $db = sanpham::find($id);
-        $db->name = $request->name;
-        $db->mota_sp = $request->name;
-        $db->id_ncc=$request->id_ncc;
-        $db->Delet=1;
-        $db->so_luong=$request->so_luong;
-        $db->id_loai_sp = $request->id_loai_sp;
-        $db->unit_price = $request->unit_price;
-        $db->created_at = new Datetime();
+        $db = quang_cao::find($id);
+        $db->tittle = $request->tittle;
+        $db->image = $request->image;
+        $db->note=$request->note;
+        $db->updated_at = new Datetime();
         $db->save();
         return $db;
     }
@@ -106,7 +89,7 @@ class apisanphamcontroller extends Controller
      */
     public function destroy($id)
     {
-        sanpham::findOrFail($id)->delete();
+        quang_cao::findOrFail($id)->delete();
         return "Deleted";
     }
 }

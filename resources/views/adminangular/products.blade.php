@@ -3,6 +3,7 @@
 <main ng-controller="mycontroller">
     <h1>PRODUCT MANAGEMENT FORM</h1>
     <p><button class="btn btn-primary" ng-click="showmodal(0)"><i class="fa fa-plus"> Create</i></button></p>
+
     <div>
         <table class="table table-border">
             <thead>
@@ -53,7 +54,7 @@
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="categoryName">Category name:<p>@{{product.id_loai_sp}}</p> </label>
+                            <label for="categoryName">Category name: </label>
                             <select name="categoryName" id="categoryName" ng-model="product.id_loai_sp">
                                 <option ng-repeat="option in loaisps" value="@{{option.id}}">@{{option.tenloai}}</option>
                             </select>
@@ -62,16 +63,16 @@
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="supplier">Supplier name: <p>@{{product.id_ncc}}</p></label>
+                            <label for="supplier">Supplier name:</label>
                             <select name="supplier" id="supplier" ng-model="product.id_ncc">
-                            <option ng-repeat="option in suppliers" value="@{{option.id}}">@{{option.ten_ncc}}</option>
+                                <option ng-repeat="option in suppliers" value="@{{option.id}}">@{{option.ten_ncc}}</option>
                             </select>
                         </div>
                     </div>
 
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label for="name">Quantity:</label>
+                            <label for="name">Description:</label>
                             <div>
                                 <textarea class="form-control" rows="5" ng-model="product.mota_sp"></textarea>
                             </div>
@@ -92,8 +93,7 @@
                         <div class="form-group">
                             <label for="name">Unit:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="product.don_vi_tinh">
-                            </div>
+                                <input type="text" class="form-control" ng-model="product.unit_price">
                             </div>
                         </div>
                     </div>

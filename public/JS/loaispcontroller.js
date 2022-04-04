@@ -1,42 +1,24 @@
 
-app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
+app.controller('loaispcontroller', function($scope, $http) { //tao 1 controller
     $http({
         method: "GET",
-        url: "http://localhost:8000/api/phanhoi"
+        url: "http://localhost:8000/api/loaisp"
     }).then(function(response) {
         console.log(response.data);
-        $scope.phanhois= response.data;
-    });
-
-    $http({
-        method: "GET",
-        url: "http://localhost:8000/api/products"
-    }).then(function(response) {
-       
-        $scope.products= response.data.sanphams;
-        console.log($scope.products);
-    });
-
-    $http({
-        method: "GET",
-        url: "http://localhost:8000/api/users"
-    }).then(function(response) {
-        console.log(response.data);
-        $scope.listusers= response.data;
+        $scope.loaisps= response.data;
     });
     $scope.showmodal = function(id) {;
         $scope.id = id;
         if (id == 0) {
-            $scope.modalTitle = "Add new phan hoi";
+            $scope.loaisp = null;
+            $scope.modalTitle = "Add new product category";
         } else {
-            $scope.modalTitle = "Edit phan hoi";     
+            $scope.modalTitle = "Edit product category";     
             $http({
                 method: "GET",
-                url: "http://localhost:8000/api/phanhoi/" + id
+                url: "http://localhost:8000/api/loaisp/" + id
             }).then(function(response) {
-                $scope.phanhoi = response.data;
-                $scope.phanhoi.id_sp +='';
-                $scope.phanhoi.id_tk +='';
+                $scope.loaisp = response.data;
             });
         }
         $('#modelId').modal('show');
@@ -46,7 +28,7 @@ app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
         if (hoi) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8000/api/phanhoi/" + id
+                url: "http://localhost:8000/api/loaisp/" + id
             }).then(function(response) {
                 $scope.message = response.data;
                 location.reload();
@@ -57,8 +39,8 @@ app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
         if ($scope.id == 0) { //dang them tin moi
             $http({
                 method: "POST",
-                url: "http://localhost:8000/api/phanhoi",
-                data: $scope.phanhoi,
+                url: "http://localhost:8000/api/loaisp",
+                data: $scope.loaisp,
                 "content-Type": "application/json"
             }).then(function(response) {
                 $scope.message = response.data;
@@ -69,8 +51,8 @@ app.controller('phanhoicontroller', function($scope, $http) { //tao 1 controller
         } else { //sua tin
             $http({
                 method: "PUT",
-                url: "http://localhost:8000/api/phanhoi/" + $scope.id,
-                data: $scope.phanhoi,
+                url: "http://localhost:8000/api/loaisp/" + $scope.id,
+                data: $scope.loaisp,
                 "content-Type": "application/json"
             }).then(function(response) {
                 $scope.message = response.data;

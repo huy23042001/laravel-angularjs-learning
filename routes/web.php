@@ -147,6 +147,9 @@ Route::get('/',function(){
 Route::get('/admin/product',function(){
     return view('admin.sanpham');
 });
+Route::get('/adminangular/products',function(){
+    return view('adminangular.products');
+});
 
 Route::get('/adminangular/loaisp',function(){
     return view('adminangular.loaisp');
@@ -159,9 +162,12 @@ Route::get('/adminangular/billban',function(){
     return view('adminangular.billban');
 });
 
+<<<<<<< HEAD
 Route::get('/adminangular/billbandetail',function(){
     return view('adminangular.billbandetail');
 });
+=======
+>>>>>>> 7b1922f1242fb9d6f79d895711ce23f6d97a5233
 Route::get('/adminangular/phanhoi',function(){
     return view('adminangular.phanhoi');
 });
@@ -183,6 +189,7 @@ Route::get('/adminangular/suppliers',function(){
 Route::get('/adminangular/customers',function(){
     return view('adminangular.customers');
 });
+<<<<<<< HEAD
 
 Route::get('/adminangular/billnhap',function(){
     return view('adminangular.billnhap');
@@ -191,3 +198,5 @@ Route::get('/adminangular/billnhap',function(){
 Route::get('/adminangular/billnhapdetail',function(){
     return view('adminangular.billnhapdetail');
 });
+=======
+>>>>>>> 7b1922f1242fb9d6f79d895711ce23f6d97a5233

@@ -43,33 +43,33 @@
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label>Title:</label>
+                            <label for="product">Product: </label>
+                            <select name="product" id="product" ng-model="phanhoi.id_sp">
+                                <option ng-repeat="option in products" value="@{{option.id}}">@{{option.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label for="user">User: </label>
+                            <select name="user" id="user" ng-model="phanhoi.id_tk">
+                                <option ng-repeat="option in listusers" value="@{{option.id}}">@{{option.users_name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="form-group">
+                            <label>Level:</label>
                             <div>
-                                <input type="text" class="form-control" ng-model="phanhoi">
+                                <input type="text" class="form-control" ng-model="phanhoi.level">
                             </div>
                         </div>
                     </div>
                     <div class="container-fluid">
                         <div class="form-group">
-                            <label>id:</label>
+                            <label>Note:</label>
                             <div>
-                                <input type="text"class="form-control" ng-model="news.content">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="form-group">
-                            <label>Title:</label>
-                            <div>
-                                <input type="text" class="form-control" ng-model="phanhoi">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="form-group">
-                            <label>Content:</label>
-                            <div>
-                                <input type="text"class="form-control" ng-model="news.content">
+                                <input type="text"class="form-control" ng-model="phanhoi.note">
                             </div>
                         </div>
                     </div>

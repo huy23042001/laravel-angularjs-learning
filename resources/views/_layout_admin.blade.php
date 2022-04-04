@@ -30,6 +30,7 @@
         <script src="/JS/angular.min.js"></script>
         <script>
             var app = angular.module('app', []);
-        <script>
+        </script>
+         @yield('js')
     </body>
 </html>

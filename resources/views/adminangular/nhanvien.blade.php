@@ -1,7 +1,7 @@
 @extends('_layout_admin')
 @section('content')
 <div ng-controller="nhanviencontroller">
-    <h1>NEW MANAGEMENT FORM</h1>
+    <h1>Employee MANAGEMENT FORM</h1>
     <p><button class="btn btn-primary" ng-click="showmodal(0)"><i class="fa fa-plus"> Create</i></button></p>
     <div>
         <table class="table table-border">

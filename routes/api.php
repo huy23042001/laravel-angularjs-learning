@@ -16,6 +16,7 @@ use App\Http\Controllers\api\apiquangcaocontroller;
 use App\Http\Controllers\api\billnhapapi;
 use App\Http\Controllers\api\billnhapdetailapi;
 use App\Http\Controllers\api\apikhocontroller;
+use App\Http\Controllers\api\apinhanviencontroller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -46,3 +47,4 @@ Route::resource('quangcao', apiquangcaocontroller::class);
 Route::resource('billnhap', billnhapapi::class);
 Route::resource('billnhapdetail', billnhapdetailapi::class);
 Route::resource('kho', apikhocontroller::class);
+Route::resource('nhanvien', apinhanviencontroller::class);

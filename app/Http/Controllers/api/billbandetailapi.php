@@ -50,7 +50,7 @@ class billbandetailapi extends Controller
         $bill->tong_tien += $request->sl*$sp->unit_price;
         $bill->save();
         $sp->save();
-        return $db;
+        return $db->with('sanpham')->get()->sortByDesc('id')->first();
     }
 
     /**

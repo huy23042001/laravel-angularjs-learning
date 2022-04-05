@@ -146,6 +146,7 @@
                 $scope.bill = $scope.bills[index];
                 $scope.bill.id_kh+="";
             } else {
+                $scope.bill =null;
                 $scope.title = "tạo";
                 $scope.state = "create"
             }
@@ -163,7 +164,7 @@
                     $scope.bills.push(res.data);
                     $("#updatemodal").modal('hide');
                 }, (err)=>{
-
+                    console.log(err);
                 });
             } else{
                 $http({

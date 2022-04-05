@@ -15,6 +15,7 @@ use App\Http\Controllers\api\apislidecontroller;
 use App\Http\Controllers\api\apiquangcaocontroller;
 use App\Http\Controllers\api\billnhapapi;
 use App\Http\Controllers\api\billnhapdetailapi;
+use App\Http\Controllers\api\apikhocontroller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -44,3 +45,4 @@ Route::resource('slide', apislidecontroller::class);
 Route::resource('quangcao', apiquangcaocontroller::class);
 Route::resource('billnhap', billnhapapi::class);
 Route::resource('billnhapdetail', billnhapdetailapi::class);
+Route::resource('kho', apikhocontroller::class);

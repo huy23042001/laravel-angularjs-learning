@@ -194,3 +194,7 @@ Route::get('/adminangular/billnhap',function(){
 Route::get('/adminangular/billnhapdetail',function(){
     return view('adminangular.billnhapdetail');
 });
+
+Route::get('/adminangular/kho',function(){
+    return view('adminangular.kho');
+});

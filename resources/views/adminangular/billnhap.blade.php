@@ -152,6 +152,7 @@
                 $scope.bill.id_ncc+="";
                 $scope.bill.id_nhanvien+="";
             } else {
+                $scope.bill = null;
                 $scope.title = "tạo";
                 $scope.state = "create"
             }

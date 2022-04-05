@@ -138,6 +138,7 @@
                 $scope.bill = $scope.billdetails[index];
                 $scope.bill.id_sp+="";
             } else {
+                $scope.bill = null;
                 $scope.title = "tạo";
                 $scope.state = "create"
             }

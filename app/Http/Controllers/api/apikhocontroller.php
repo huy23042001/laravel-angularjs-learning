@@ -4,20 +4,14 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\bills_ban;
-use App\Models\khach_hang;
+use App\Models\kho;
+use Illuminate\Support\Facades\DB;
 
-class billbanapi extends Controller
+class apikhocontroller extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
-    {
-        $bill = bills_ban::with('khach_hang')->get();
-        return $bill;
+    {;
+        return kho::with('sanpham')->get();
     }
 
     /**
@@ -38,17 +32,10 @@ class billbanapi extends Controller
      */
     public function store(Request $request)
     {
-        $db = new bills_ban;
-        $db->id_kh=$request->id_kh;
-        $time = strtotime($request->date_order);
-        $newformat = date('Y-m-d',$time);
-        $db->date_order = $newformat;
-        $db->tong_tien = 0;
-        $db->payment = 'on';
-        $db->status = $request->status;
-        $db->note = $request->note;
-        $db->save();
-        return $db->with('khach_hang')->get()->sortByDesc('id')->first();
+        DB::table('kho')->insert([
+            'id_sp' => $request->id_sp,
+            'sl' => $request->sl
+        ]);
     }
 
     /**
@@ -59,7 +46,7 @@ class billbanapi extends Controller
      */
     public function show($id)
     {
-        //
+        return kho::findOrFail($id);
     }
 
     /**
@@ -82,15 +69,9 @@ class billbanapi extends Controller
      */
     public function update(Request $request, $id)
     {
-        $db = bills_ban::find($id);
-        $db->id_kh=$request->id_kh;
-        $time = strtotime($request->date_order);
-        $newformat = date('Y-m-d',$time);
-        $db->date_order = $newformat;
-        $db->status = $request->status;
-        $db->note = $request->note;
-        $db->save();
-        return $db->with('khach_hang')->get()->find($id);
+        DB::table('kho')
+              ->where('id', $request->id)
+              ->update(['id_sp' => $request->id_sp,'sl' => $request->sl]);
     }
 
     /**
@@ -101,8 +82,7 @@ class billbanapi extends Controller
      */
     public function destroy($id)
     {
-        $db = bills_ban::find($id);
-        $db->delete();
-        return $db;
+        kho::findOrFail($id)->delete();
+        return "Deleted";
     }
 }
